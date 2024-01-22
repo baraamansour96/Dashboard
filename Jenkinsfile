@@ -1,6 +1,6 @@
 pipeline {
     agent any
-   
+
     stages {
         stage("Checkout") {
             steps {
@@ -10,14 +10,24 @@ pipeline {
 
         stage("Test") {
             steps {
-                sh 'sudo apt install npm'
-                sh 'npm test'
+                script {
+                    // Install npm on Unix-like systems
+                    if (isUnix()) {
+                        sh 'sudo apt install npm'
+                    } else {
+                        echo 'Skipping npm installation on non-Unix system'
+                    }
+
+                    sh 'npm test'
+                }
             }
         }
 
         stage("Build") {
             steps {
-                sh 'npm run build'
+                script {
+                    sh 'npm run build'
+                }
             }
         }
     }
