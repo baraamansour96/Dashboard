@@ -30,6 +30,15 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                script {
+                    // Testing commands if you have tests
+                    // For example: sh 'npm test'
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
                 script {
@@ -42,6 +51,7 @@ pipeline {
     post {
         always {
             // Clean up or additional actions that should be performed regardless of the pipeline result
+            echo 'Pipeline finished'
         }
     }
 }
