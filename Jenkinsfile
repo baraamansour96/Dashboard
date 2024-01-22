@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "$PATH:/usr/local/bin"  // Adjust this based on the Node.js and npm installation location on your server
+    }
     stages {
         stage("Checkout") {
             steps {
