@@ -12,11 +12,9 @@ pipeline {
             steps {
                 script {
                     // Install npm and run tests (for Unix systems)
-                    if (isUnix()) {
-                        sh 'sudo apt install npm'
+                    script {
+                        sh 'sudo apt install npm || true'
                         sh 'npm test'
-                    } else {
-                        echo 'Skipping npm installation on non-Unix system'
                     }
                 }
             }
@@ -26,10 +24,8 @@ pipeline {
             steps {
                 script {
                     // Build the project (for Unix systems)
-                    if (isUnix()) {
+                    script {
                         sh 'npm run build'
-                    } else {
-                        echo 'Skipping build on non-Unix system'
                     }
                 }
             }
