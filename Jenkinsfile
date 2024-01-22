@@ -1,4 +1,4 @@
- pipeline {
+pipeline {
     agent any
 
     stages {
@@ -31,14 +31,6 @@
                     } else {
                         echo 'Skipping build on non-Unix system'
                     }
-                }
-            }
-        }
-
-        stage("Build Image") {
-            steps {
-                script {
-                    sh 'docker build -t my-node-app:1.0 .'
                 }
             }
         }
