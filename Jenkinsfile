@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "$PATH:/usr/local/bin"  // Adjust this based on the Node.js and npm installation location on your server
+        PATH = "$PATH:/Users/baraa/path/to/your/nodejs/bin"  // Update this path to the location of your Node.js binary
     }
     stages {
         stage("Checkout") {
@@ -12,7 +12,7 @@ pipeline {
 
         stage("Test") {
             steps {
-                sh 'sudo npm install'
+                sh 'npm install'
                 sh 'npm test'
             }
         }
