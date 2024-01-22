@@ -1,7 +1,4 @@
-pipeline {
-    agent any
-
-    stages {
+ stages {
         stage("Checkout") {
             steps {
                 checkout scm
@@ -12,9 +9,11 @@ pipeline {
             steps {
                 script {
                     // Install npm and run tests (for Unix systems)
-                    script {
-                        sh 'sudo apt install npm || true'
+                    if (isUnix()) {
+                        sh 'sudo apt install npm'
                         sh 'npm test'
+                    } else {
+                        echo 'Skipping npm installation on non-Unix system'
                     }
                 }
             }
@@ -24,8 +23,10 @@ pipeline {
             steps {
                 script {
                     // Build the project (for Unix systems)
-                    script {
+                    if (isUnix()) {
                         sh 'npm run build'
+                    } else {
+                        echo 'Skipping build on non-Unix system'
                     }
                 }
             }
