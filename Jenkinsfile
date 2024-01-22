@@ -1,57 +1,23 @@
 pipeline {
     agent any
-
-    environment {
-        PATH = "$PATH:/usr/local/bin"  // Adjust this based on the Node.js and npm installation location on your server
-    }
-
     stages {
-        stage('Checkout') {
+        stage("Checkout") {
             steps {
                 checkout scm
             }
         }
 
-        stage('Install Dependencies') {
+        stage("Test") {
             steps {
-                script {
-                    // Install Node.js dependencies
-                    sh 'npm install'
-                }
+                sh 'sudo npm install'
+                sh 'npm test'
             }
         }
 
-        stage('Build') {
+        stage("Build") {
             steps {
-                script {
-                    // Build React project
-                    sh 'npm run build'
-                }
+                sh 'npm run build'
             }
-        }
-
-        stage('Test') {
-            steps {
-                script {
-                    // Testing commands if you have tests
-                    // For example: sh 'npm test'
-                }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deployment or configuration commands based on your project needs
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            // Clean up or additional actions that should be performed regardless of the pipeline result
-            echo 'Pipeline finished'
         }
     }
 }
