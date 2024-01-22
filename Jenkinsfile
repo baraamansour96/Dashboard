@@ -38,4 +38,10 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // Clean up or additional actions that should be performed regardless of the pipeline result
+        }
+    }
 }
