@@ -34,5 +34,12 @@
                 }
             }
         }
+     stage("Build Image"){
+      step{
+       script{
+        sh 'docker builed -t my-node-app:1.0 .'
     }
 }
+     }
+    }
+ }
