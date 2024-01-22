@@ -30,15 +30,6 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                script {
-                    // Testing commands if you have tests
-                    // For example: sh 'npm test'
-                }
-            }
-        }
-
         stage('Deploy') {
             steps {
                 script {
