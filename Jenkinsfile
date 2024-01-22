@@ -8,7 +8,7 @@ pipleine {
     }
     stage("Test"){
       steps{
-        sh 'sudo apt install npm'
+        sh 'sudo npm install'
                 sh 'npm test'
             }
         }
